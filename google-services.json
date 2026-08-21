@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "383288441384",
+    "project_id": "metavault-e2d3a",
+    "storage_bucket": "metavault-e2d3a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:383288441384:android:6c3a47707dc155ff07531d",
+        "android_client_info": {
+          "package_name": "com.metavault.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDk6facdpxaYVmONSy_H0_KRcNgZY05acg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

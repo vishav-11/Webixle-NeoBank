@@ -1,0 +1,617 @@
+<!-- public/conversion-return.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>Metavault · Checkout Complete</title>
+<meta name="robots" content="noindex, nofollow" />
+<style>
+  :root {
+    --bg:           #020F12;
+    --bg-alt:       #00272D;
+    --surface:      #0A1A1F;
+    --card:         #0D2028;
+    --border:       #1A3540;
+    --border-soft:  #0F2A33;
+    --text:         #FFFFFF;
+    --text2:        #7A9BA8;
+    --text3:        #3D6170;
+    --green:        #00D395;
+    --green-dim:    rgba(0,211,149,0.12);
+    --green-border: rgba(0,211,149,0.22);
+    --red:          #FF4D6A;
+    --red-dim:      rgba(255,77,106,0.12);
+    --red-border:   rgba(255,77,106,0.22);
+    --amber:        #F59E0B;
+    --amber-dim:    rgba(245,158,11,0.12);
+    --amber-border: rgba(245,158,11,0.22);
+    --blue:         #4A9EFF;
+    --blue-dim:     rgba(74,158,255,0.12);
+    --blue-border:  rgba(74,158,255,0.22);
+    --purple:       #A78BFA;
+    --purple-dim:   rgba(167,139,250,0.12);
+    --purple-border:rgba(167,139,250,0.22);
+    --gray:         #3D6170;
+    --gray-dim:     rgba(61,97,112,0.15);
+    --gray-border:  rgba(61,97,112,0.25);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                 Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Background gradient */
+  .bg-layer {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(180deg, #00272D 0%, #020F12 38%, #020F12 100%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .bg-glow {
+    position: fixed;
+    top: -15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 350px;
+    background: radial-gradient(ellipse at center,
+      rgba(0,211,149,0.05) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Layout */
+  .wrap {
+    position: relative;
+    z-index: 1;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px 72px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Icon */
+  .icon-ring {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border: 1.5px solid transparent;
+    animation: pulse 2.6s ease-in-out infinite;
+  }
+
+  .icon-core {
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon-core svg { width: 30px; height: 30px; }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.05); }
+  }
+
+  /* Text */
+  .title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 8px;
+    text-align: center;
+    letter-spacing: -0.3px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    line-height: 20px;
+    color: var(--text2);
+    text-align: center;
+    max-width: 300px;
+    margin-bottom: 20px;
+  }
+
+  /* Status badge */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 13px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    border: 1px solid transparent;
+    margin-bottom: 20px;
+  }
+
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .spinner {
+    width: 11px;
+    height: 11px;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Info panel */
+  .panel {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+
+  .panel-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(26,53,64,0.55);
+  }
+
+  .panel-row:last-child { border-bottom: none; }
+
+  .row-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text3);
+  }
+
+  .row-value {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text2);
+    font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+    max-width: 58%;
+    text-align: right;
+    word-break: break-all;
+  }
+
+  .row-value.highlight {
+    font-family: inherit;
+    font-size: 12px;
+  }
+
+  /* Progress bar (auto-close indicator) */
+  .progress-track {
+    width: 100%;
+    height: 2px;
+    background: var(--border);
+    border-radius: 999px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    display: none;
+  }
+
+  .progress-track.show { display: block; }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 999px;
+    width: 100%;
+    transform-origin: left;
+    animation: shrink linear forwards;
+  }
+
+  @keyframes shrink {
+    from { transform: scaleX(1); }
+    to   { transform: scaleX(0); }
+  }
+
+  /* Buttons */
+  .btn-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 18px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.15s ease, transform 0.1s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn:active { opacity: 0.82; transform: scale(0.98); }
+
+  .btn svg { flex-shrink: 0; }
+
+  .btn-outline {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text2);
+    font-size: 13px;
+    padding: 12px 20px;
+    border-radius: 18px;
+  }
+
+  /* Hint */
+  .hint {
+    display: none;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    background: var(--surface);
+    color: var(--text2);
+    font-size: 11px;
+    line-height: 17px;
+    text-align: left;
+    margin-top: 4px;
+  }
+
+  .hint.show { display: flex; }
+  .hint svg  { flex-shrink: 0; margin-top: 1px; color: var(--text3); }
+
+  /* Brand */
+  .brand {
+    position: fixed;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text3);
+    letter-spacing: 1.5px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+
+  /* Fade-up entry */
+  .fu {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: fadeUp 0.45s ease forwards;
+  }
+
+  .fu-1 { animation-delay: 0.00s; }
+  .fu-2 { animation-delay: 0.08s; }
+  .fu-3 { animation-delay: 0.16s; }
+  .fu-4 { animation-delay: 0.24s; }
+  .fu-5 { animation-delay: 0.32s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-layer"></div>
+<div class="bg-glow" id="bgGlow"></div>
+
+<div class="wrap">
+  <div class="card">
+
+    <div class="icon-ring fu fu-1" id="iconRing">
+      <div class="icon-core" id="iconCore"></div>
+    </div>
+
+    <h1 class="title fu fu-2" id="title">Checkout Complete</h1>
+    <p class="subtitle fu fu-2" id="subtitle">You can return to Metavault to view your transaction.</p>
+
+    <div class="badge fu fu-3" id="badge">
+      <div class="badge-dot" id="badgeDot"></div>
+      <span id="badgeLabel">Processing</span>
+    </div>
+
+    <div class="progress-track fu fu-3" id="progressTrack">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="panel fu fu-4" id="infoPanel"></div>
+
+    <div class="btn-group fu fu-5" id="btnGroup"></div>
+
+    <div class="hint" id="hint">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2.5"
+           stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"/>
+        <line x1="12" y1="10" x2="12" y2="16"/>
+        <circle cx="12" cy="7.5" r="0.5" fill="currentColor"/>
+      </svg>
+      <span>Tab could not be closed automatically. Please close it manually to return to Metavault.</span>
+    </div>
+
+  </div>
+</div>
+
+<div class="brand">
+  <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2.5"
+       stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+  </svg>
+  METAVAULT
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── Query params ── */
+  var qs = new URLSearchParams(window.location.search);
+  var status = (qs.get('transactionStatus') || 'PENDING').toUpperCase();
+  var txId     = qs.get('transactionId')      || '';
+  var currency = (qs.get('baseCurrencyCode')  || 'USD').toUpperCase();
+  var amount   = qs.get('baseCurrencyAmount') || '';
+
+  var payload = {
+    transactionId:      txId,
+    baseCurrencyCode:   currency,
+    baseCurrencyAmount: amount,
+    transactionStatus:  qs.get('transactionStatus') || '',
+  };
+
+  /* ── Status config ── */
+  var CFG = {
+    COMPLETED:            { c: '#00D395', dim: 'rgba(0,211,149,0.12)',   bdr: 'rgba(0,211,149,0.22)',   icon: 'check', label: 'Completed',             title: 'Payment Successful',      sub: 'Your crypto purchase was completed. Return to Metavault to see your wallet.',  pending: false },
+    PENDING:              { c: '#F59E0B', dim: 'rgba(245,158,11,0.12)',  bdr: 'rgba(245,158,11,0.22)',  icon: 'clock', label: 'Pending',               title: 'Payment Submitted',       sub: 'Your transaction is being processed. Check status in the app.',                 pending: true  },
+    PROCESSING:           { c: '#4A9EFF', dim: 'rgba(74,158,255,0.12)',  bdr: 'rgba(74,158,255,0.22)',  icon: 'clock', label: 'Processing',            title: 'Payment Processing',      sub: 'MoonPay is processing your transaction. You can close this tab.',               pending: true  },
+    WAITINGPAYMENT:       { c: '#A78BFA', dim: 'rgba(167,139,250,0.12)', bdr: 'rgba(167,139,250,0.22)', icon: 'clock', label: 'Waiting for Payment',   title: 'Complete Your Payment',   sub: 'Return to the app to complete your payment.',                                   pending: true  },
+    WAITINGAUTHORIZATION: { c: '#F59E0B', dim: 'rgba(245,158,11,0.12)',  bdr: 'rgba(245,158,11,0.22)',  icon: 'clock', label: 'Awaiting Authorization', title: 'Authorization Required',  sub: 'Return to the app to authorize this transaction.',                               pending: true  },
+    FAILED:               { c: '#FF4D6A', dim: 'rgba(255,77,106,0.12)',  bdr: 'rgba(255,77,106,0.22)',  icon: 'x',     label: 'Failed',                title: 'Payment Failed',          sub: 'Something went wrong. Your payment was not charged. Please try again.',          pending: false },
+    CANCELLED:            { c: '#3D6170', dim: 'rgba(61,97,112,0.15)',   bdr: 'rgba(61,97,112,0.25)',   icon: 'x',     label: 'Cancelled',             title: 'Payment Cancelled',       sub: 'This transaction was cancelled. Return to Metavault.',                           pending: false },
+  };
+
+  var cfg = CFG[status] || CFG['PENDING'];
+
+  /* ── SVG paths ── */
+  var SVG = {
+    check:  '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+    clock:  '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>',
+    x:      '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
+    close16:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
+    open16: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>',
+    check16:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+  };
+
+  /* ── Helpers ── */
+  function shorten(s, pre, suf) {
+    pre = pre || 8; suf = suf || 6;
+    if (!s || s.length <= pre + suf + 3) return s || '—';
+    return s.slice(0, pre) + '...' + s.slice(-suf);
+  }
+
+  function el(tag, props) {
+    var e = document.createElement(tag);
+    Object.keys(props || {}).forEach(function (k) {
+      if (k === 'html') { e.innerHTML = props[k]; }
+      else if (k === 'text') { e.textContent = props[k]; }
+      else if (k === 'style') {
+        Object.keys(props[k]).forEach(function (sk) {
+          e.style[sk] = props[k][sk];
+        });
+      } else { e[k] = props[k]; }
+    });
+    return e;
+  }
+
+  /* ── Apply theme to DOM ── */
+
+  // Glow tint
+  document.getElementById('bgGlow').style.background =
+    'radial-gradient(ellipse at center, ' + cfg.dim + ' 0%, transparent 70%)';
+
+  // Icon ring
+  var ring = document.getElementById('iconRing');
+  ring.style.background   = cfg.dim;
+  ring.style.borderColor  = cfg.bdr;
+  ring.style.boxShadow    = '0 0 0 0 ' + cfg.c + '00';
+
+  // Add glow keyframe dynamically
+  var st = document.createElement('style');
+  st.textContent =
+    '#iconRing { animation: pulse 2.6s ease-in-out infinite, iconGlow 2.6s ease-in-out infinite; }' +
+    '@keyframes iconGlow {' +
+    '  0%,100% { box-shadow: 0 0 0 0 ' + cfg.c + '00; }' +
+    '  50%      { box-shadow: 0 0 28px 6px ' + cfg.c + '18; }' +
+    '}';
+  document.head.appendChild(st);
+
+  // Icon core
+  var core = document.getElementById('iconCore');
+  core.style.background = cfg.dim;
+  core.style.color      = cfg.c;
+  core.innerHTML        = SVG[cfg.icon];
+
+  // Title / subtitle
+  document.getElementById('title').textContent    = cfg.title;
+  document.getElementById('subtitle').textContent = cfg.sub;
+
+  // Badge
+  var badge = document.getElementById('badge');
+  badge.style.background  = cfg.dim;
+  badge.style.borderColor = cfg.bdr;
+  badge.style.color       = cfg.c;
+  document.getElementById('badgeDot').style.background = cfg.c;
+  document.getElementById('badgeLabel').textContent     = cfg.label;
+
+  if (cfg.pending) {
+    var sp = el('span', { className: 'spinner', style: { color: cfg.c } });
+    badge.insertBefore(sp, badge.firstChild);
+  }
+
+  /* ── Info panel rows ── */
+  var panelRows = [];
+
+  if (txId) {
+    panelRows.push({ label: 'Transaction ID', value: shorten(txId, 10, 8), mono: true });
+  }
+
+  if (amount && parseFloat(amount) > 0) {
+    panelRows.push({
+      label: 'Amount Paid',
+      value: currency + ' ' + parseFloat(amount).toFixed(2),
+      mono: false,
+      color: cfg.c,
+    });
+  }
+
+  panelRows.push({ label: 'Status', value: cfg.label, mono: false, color: cfg.c });
+
+  var panel = document.getElementById('infoPanel');
+  panelRows.forEach(function (row) {
+    var rowEl    = el('div', { className: 'panel-row' });
+    var labelEl  = el('span', { className: 'row-label', text: row.label });
+    var cls      = 'row-value' + (row.mono ? '' : ' highlight');
+    var valueEl  = el('span', { className: cls, text: row.value });
+    if (row.color) valueEl.style.color = row.color;
+    rowEl.appendChild(labelEl);
+    rowEl.appendChild(valueEl);
+    panel.appendChild(rowEl);
+  });
+
+  /* ── Button helpers ── */
+  var btnGroup = document.getElementById('btnGroup');
+  var hint     = document.getElementById('hint');
+
+  function showHint() { hint.classList.add('show'); }
+
+  function tryClose() {
+    try { window.close(); } catch (e) { /* blocked */ }
+    setTimeout(function () {
+      if (!document.hidden) showHint();
+    }, 450);
+  }
+
+  function makeBtn(html, bgColor, textColor, outline, onClick) {
+    var b = el('button', {
+      className: outline ? 'btn btn-outline' : 'btn',
+      html: html,
+    });
+    if (!outline) {
+      b.style.background = bgColor;
+      b.style.color      = textColor;
+    }
+    b.addEventListener('click', onClick);
+    return b;
+  }
+
+  /* ── Opener flow (MoonPay opened a new tab) ── */
+  var hasOpener = (function () {
+    try { return !!window.opener && window.opener !== window; } catch(e) { return false; }
+  }());
+
+  if (hasOpener) {
+    /* Notify the parent tab — no API call, just postMessage */
+    try {
+      window.opener.postMessage(
+        { type: 'MOONPAY_COMPLETE', params: payload },
+        window.location.origin
+      );
+    } catch (e) { /* cross-origin or closed — safe to ignore */ }
+
+    /* Update subtitle */
+    document.getElementById('subtitle').textContent =
+      'The Metavault tab has been notified. This tab will close automatically.';
+
+    /* Progress bar */
+    var track = document.getElementById('progressTrack');
+    var fill  = document.getElementById('progressFill');
+    track.classList.add('show');
+    fill.style.background       = cfg.c;
+    fill.style.animationDuration = '1.4s';
+
+    /* Close button + auto-close */
+    btnGroup.appendChild(
+      makeBtn(SVG.check16 + '<span>Close Tab</span>', cfg.c, '#020F12', false, tryClose)
+    );
+
+    setTimeout(tryClose, 1400);
+
+  } else {
+    /* No opener — user landed here directly (mobile browser redirect after MoonPay) */
+
+    /* Deep link back to native app */
+    var deepLink = [
+      'metavault://conversion/success',
+      '?transactionId=',      encodeURIComponent(txId),
+      '&baseCurrencyCode=',   encodeURIComponent(currency),
+      '&baseCurrencyAmount=', encodeURIComponent(amount),
+      '&transactionStatus=',  encodeURIComponent(payload.transactionStatus),
+    ].join('');
+
+    /* Primary: open native app */
+    var openBtn = makeBtn(
+      SVG.open16 + '<span>Open in Metavault App</span>',
+      cfg.c, '#020F12', false,
+      function () {
+        window.location.href = deepLink;
+        /* If deep link fails (app not installed), show hint after delay */
+        setTimeout(showHint, 2000);
+      }
+    );
+
+    /* Secondary: close tab */
+    var closeBtn = makeBtn(
+      SVG.close16 + '<span>Close Tab</span>',
+      null, null, true,
+      tryClose
+    );
+
+    // btnGroup.appendChild(openBtn);
+    btnGroup.appendChild(closeBtn);
+  }
+
+}());
+</script>
+</body>
+</html>
