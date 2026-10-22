@@ -56,66 +56,66 @@ export const Screen = {
 } as const;
 
 export const DarkColors = {
-  accent: '#2AA9E0',
-  accentDim: 'rgba(42,169,224,0.15)',
-  accentBorder: 'rgba(42,169,224,0.30)',
-  accentGlow: 'rgba(42,169,224,0.35)',
+  accent: '#14B8A6',
+  accentDim: 'rgba(20,184,166,0.15)',
+  accentBorder: 'rgba(20,184,166,0.30)',
+  accentGlow: 'rgba(20,184,166,0.35)',
 
-  bgGradient: ['#100224', '#160530', '#100224'] as string[],
+  bgGradient: ['#0F172A', '#1E293B', '#0F172A'] as string[],
   bgGradientPos: [0, 0.38, 1] as number[],
 
-  bg: '#100224',
-  bgAlt: '#150C28',
+  bg: '#0F172A',
+  bgAlt: '#1E293B',
 
-  surface: '#180F2C',
-  card: '#1D1236',
-  cardAlt: '#150C28',
-  cardHover: '#21133D',
+  surface: '#1E293B',
+  card: '#334155',
+  cardAlt: '#1E293B',
+  cardHover: '#475569',
 
-  border: '#302255',
-  borderSoft: '#241843',
-  hover: '#2A1B4A',
+  border: '#475569',
+  borderSoft: '#334155',
+  hover: '#475569',
 
-  text: '#FFFFFF',
-  text2: '#A99BC7',
-  text3: '#7C6D9D',
+  text: '#F8FAFC',
+  text2: '#CBD5E1',
+  text3: '#94A3B8',
 
-  green: '#22C58B',
-  greenBright: '#2ECC71',
-  greenDim: 'rgba(34,197,139,0.14)',
-  greenBorder: 'rgba(34,197,139,0.28)',
-  greenGlow: 'rgba(34,197,139,0.30)',
+  green: '#10B981',
+  greenBright: '#34D399',
+  greenDim: 'rgba(16,185,129,0.14)',
+  greenBorder: 'rgba(16,185,129,0.28)',
+  greenGlow: 'rgba(16,185,129,0.30)',
 
-  red: '#FF5570',
-  redBright: '#E74C3C',
-  redDim: 'rgba(255,85,112,0.14)',
-  redBorder: 'rgba(255,85,112,0.30)',
+  red: '#EF4444',
+  redBright: '#F87171',
+  redDim: 'rgba(239,68,68,0.14)',
+  redBorder: 'rgba(239,68,68,0.30)',
 
-  orange: '#FFB23F',
-  orangeDim: 'rgba(255,178,63,0.14)',
-  orangeBorder: 'rgba(255,178,63,0.30)',
+  orange: '#F59E0B',
+  orangeDim: 'rgba(245,158,11,0.14)',
+  orangeBorder: 'rgba(245,158,11,0.30)',
 
-  blue: '#5B8CFF',
-  blueDim: 'rgba(91,140,255,0.14)',
+  blue: '#3B82F6',
+  blueDim: 'rgba(59,130,246,0.14)',
 
-  purple: '#9B7BFF',
-  purpleDim: 'rgba(155,123,255,0.16)',
+  purple: '#8B5CF6',
+  purpleDim: 'rgba(139,92,246,0.16)',
 
   overlay: 'rgba(0,0,0,0.72)',
 
-  tabBar: '#150C28',
-  tabBarBorder: '#302255',
+  tabBar: '#1E293B',
+  tabBarBorder: '#475569',
 
-  // Brand — matched to the Webixle logo mark (#9A75FF)
-  primary: '#9A75FF',
-  primaryBright: '#B69DFF',
+  // Brand — Modern Indigo
+  primary: '#6366F1',
+  primaryBright: '#818CF8',
 
-  primaryDim: 'rgba(154,117,255,0.18)',
-  primaryBorder: 'rgba(154,117,255,0.35)',
-  primaryGlow: 'rgba(154,117,255,0.45)',
+  primaryDim: 'rgba(99,102,241,0.18)',
+  primaryBorder: 'rgba(99,102,241,0.35)',
+  primaryGlow: 'rgba(99,102,241,0.45)',
 
-  primaryGradient: ['#9A75FF', '#6238D6'] as string[],
-  cardGradient: ['#9A75FF', '#6238D6'] as string[],
+  primaryGradient: ['#6366F1', '#4F46E5'] as string[],
+  cardGradient: ['#6366F1', '#4F46E5'] as string[],
 
   cardOverlay1: 'rgba(255,255,255,0.08)',
   cardOverlay2: 'rgba(255,255,255,0.05)',
@@ -124,76 +124,76 @@ export const DarkColors = {
   cardTextOnGradientDim: 'rgba(255,255,255,0.72)',
 
   cardStatusBg: '#FFFFFF',
-  cardStatusText: '#6238D6',
+  cardStatusText: '#4F46E5',
 
-  iconTileBg: '#281B49',
+  iconTileBg: '#334155',
 
-  pendingColor: '#FFB23F',
+  pendingColor: '#F59E0B',
 };
 
 export const LightColors = {
-  accent: '#2AA9E0',
-  accentDim: 'rgba(42,169,224,0.10)',
-  accentBorder: 'rgba(42,169,224,0.22)',
-  accentGlow: 'rgba(42,169,224,0.18)',
+  accent: '#14B8A6',
+  accentDim: 'rgba(20,184,166,0.10)',
+  accentBorder: 'rgba(20,184,166,0.22)',
+  accentGlow: 'rgba(20,184,166,0.18)',
 
-  bgGradient: ['#FFFFFF', '#FBFAFF', '#F6F3FF'] as string[],
+  bgGradient: ['#FFFFFF', '#F8FAFC', '#F1F5F9'] as string[],
   bgGradientPos: [0, 0.38, 1] as number[],
 
   bg: '#FFFFFF',
-  bgAlt: '#F8F6FD',
+  bgAlt: '#F8FAFC',
 
   surface: '#FFFFFF',
   card: '#FFFFFF',
-  cardAlt: '#F8F6FD',
-  cardHover: '#F3EEFF',
+  cardAlt: '#F8FAFC',
+  cardHover: '#F1F5F9',
 
-  border: '#E7DFFC',
-  borderSoft: '#F2ECFF',
-  hover: '#F3EEFF',
+  border: '#E2E8F0',
+  borderSoft: '#F1F5F9',
+  hover: '#F1F5F9',
 
-  text: '#1A1330',
-  text2: '#70638D',
-  text3: '#A095BC',
+  text: '#0F172A',
+  text2: '#475569',
+  text3: '#94A3B8',
 
-  green: '#22C58B',
-  greenBright: '#2ECC71',
-  greenDim: 'rgba(34,197,139,0.10)',
-  greenBorder: 'rgba(34,197,139,0.22)',
-  greenGlow: 'rgba(34,197,139,0.18)',
+  green: '#10B981',
+  greenBright: '#059669',
+  greenDim: 'rgba(16,185,129,0.10)',
+  greenBorder: 'rgba(16,185,129,0.22)',
+  greenGlow: 'rgba(16,185,129,0.18)',
 
-  red: '#FF5570',
-  redBright: '#E74C3C',
-  redDim: 'rgba(255,85,112,0.10)',
-  redBorder: 'rgba(255,85,112,0.22)',
+  red: '#EF4444',
+  redBright: '#DC2626',
+  redDim: 'rgba(239,68,68,0.10)',
+  redBorder: 'rgba(239,68,68,0.22)',
 
-  orange: '#FFB23F',
-  orangeDim: 'rgba(255,178,63,0.10)',
-  orangeBorder: 'rgba(255,178,63,0.22)',
+  orange: '#F59E0B',
+  orangeDim: 'rgba(245,158,11,0.10)',
+  orangeBorder: 'rgba(245,158,11,0.22)',
 
-  blue: '#5B8CFF',
-  blueDim: 'rgba(91,140,255,0.10)',
+  blue: '#3B82F6',
+  blueDim: 'rgba(59,130,246,0.10)',
 
-  purple: '#9B7BFF',
-  purpleDim: 'rgba(155,123,255,0.10)',
+  purple: '#8B5CF6',
+  purpleDim: 'rgba(139,92,246,0.10)',
 
-  overlay: 'rgba(20,10,40,0.35)',
+  overlay: 'rgba(15,23,42,0.35)',
 
   tabBar: '#FFFFFF',
-  tabBarBorder: '#E7DFFC',
+  tabBarBorder: '#E2E8F0',
 
-  // Primary Brand — matched to the Webixle logo mark (#9A75FF)
-  primary: '#9A75FF',
-  primaryBright: '#6C3CE0',
+  // Primary Brand — Modern Indigo
+  primary: '#6366F1',
+  primaryBright: '#4F46E5',
 
-  primaryDim: 'rgba(154,117,255,0.10)',
-  primaryBorder: 'rgba(154,117,255,0.22)',
-  primaryGlow: 'rgba(154,117,255,0.18)',
+  primaryDim: 'rgba(99,102,241,0.10)',
+  primaryBorder: 'rgba(99,102,241,0.22)',
+  primaryGlow: 'rgba(99,102,241,0.18)',
 
-  primaryGradient: ['#9A75FF', '#6238D6'] as string[],
+  primaryGradient: ['#6366F1', '#4F46E5'] as string[],
 
   // Dashboard Cards
-  cardGradient: ['#9A75FF', '#6238D6'] as string[],
+  cardGradient: ['#6366F1', '#4F46E5'] as string[],
   cardOverlay1: 'rgba(255,255,255,0.14)',
   cardOverlay2: 'rgba(255,255,255,0.10)',
 
@@ -201,11 +201,11 @@ export const LightColors = {
   cardTextOnGradientDim: 'rgba(255,255,255,0.75)',
 
   cardStatusBg: '#FFFFFF',
-  cardStatusText: '#6238D6',
+  cardStatusText: '#4F46E5',
 
-  iconTileBg: '#F3EEFF',
+  iconTileBg: '#EEF2FF',
 
-  pendingColor: '#FFB23F',
+  pendingColor: '#F59E0B',
 };
 
 
@@ -215,28 +215,28 @@ export type ColorScheme = typeof DarkColors | typeof LightColors;
 // 🌈 GRADIENTS
 // ============================================================
 export const PrimaryGradients = {
-  dark:  ['#6238D6', '#9A75FF'] as [string, string],
-  light: ['#6238D6', '#9A75FF'] as [string, string],
+  dark:  ['#4F46E5', '#6366F1'] as [string, string],
+  light: ['#4F46E5', '#6366F1'] as [string, string],
 } as const;
 
 export const HeroGradients = {
-  dark:  ['#2A1660', '#1C0F4A', '#120A30'] as [string, string, string],
-  light: ['#5B34E0', '#7B4DFF', '#3D1FB8'] as [string, string, string],
+  dark:  ['#1E293B', '#334155', '#0F172A'] as [string, string, string],
+  light: ['#4F46E5', '#6366F1', '#3730A3'] as [string, string, string],
 } as const;
 
 export const SidebarGradients = {
-  dark:  ['#160B2E', '#0D0620'] as [string, string],
-  light: ['#F3EEFF', '#FBFAFF'] as [string, string],
+  dark:  ['#1E293B', '#0F172A'] as [string, string],
+  light: ['#EEF2FF', '#F8FAFC'] as [string, string],
 } as const;
 
 export const SuccessGradients = {
-  dark:  ['#27AE60', '#2ECC71'] as [string, string],
-  light: ['#1E8449', '#27AE60'] as [string, string],
+  dark:  ['#059669', '#10B981'] as [string, string],
+  light: ['#047857', '#059669'] as [string, string],
 } as const;
 
 export const AccentGradients = {
-  dark:  ['#2AA9E0', '#3DBDFF'] as [string, string],
-  light: ['#1E8FC0', '#2AA9E0'] as [string, string],
+  dark:  ['#14B8A6', '#2DD4BF'] as [string, string],
+  light: ['#0D9488', '#14B8A6'] as [string, string],
 } as const;
 
 // ============================================================
@@ -335,28 +335,28 @@ export const IconBox = {
 export const Shadows = {
   light: {
     sm: {
-      shadowColor:   '#6238D6',
+      shadowColor:   '#4F46E5',
       shadowOffset:  { width: 0, height: vs(2) },
       shadowOpacity: 0.08,
       shadowRadius:  ms(4, 0.3),
       elevation:     2,
     },
     md: {
-      shadowColor:   '#6238D6',
+      shadowColor:   '#4F46E5',
       shadowOffset:  { width: 0, height: vs(4) },
       shadowOpacity: 0.12,
       shadowRadius:  ms(8, 0.3),
       elevation:     4,
     },
     lg: {
-      shadowColor:   '#6238D6',
+      shadowColor:   '#4F46E5',
       shadowOffset:  { width: 0, height: vs(8) },
       shadowOpacity: 0.16,
       shadowRadius:  ms(16, 0.3),
       elevation:     8,
     },
     glow: {
-      shadowColor:   '#9A75FF',
+      shadowColor:   '#6366F1',
       shadowOffset:  { width: 0, height: 0 },
       shadowOpacity: 0.30,
       shadowRadius:  ms(12, 0.3),
@@ -386,7 +386,7 @@ export const Shadows = {
       elevation:     8,
     },
     glow: {
-      shadowColor:   '#9A75FF',
+      shadowColor:   '#6366F1',
       shadowOffset:  { width: 0, height: 0 },
       shadowOpacity: 0.50,
       shadowRadius:  ms(16, 0.3),

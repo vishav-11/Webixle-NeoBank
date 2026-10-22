@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "Webixle",
-    "slug": "webixle-user",
-    "owner": "sangamjha",
+    "name": "Webixlebank",
+    "slug": "webixlebank",
+    "owner": "mrdevii",
     "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./src/assets/images/logo_square_1024.png",
-    "scheme": "webixle-user",
+    "scheme": "webixlebank",
     "userInterfaceStyle": "automatic",
     "runtimeVersion": {
       "policy": "appVersion"
@@ -18,7 +18,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.webixle.app",
+      "bundleIdentifier": "com.webixlebank.app",
       "infoPlist": {
         "UIBackgroundModes": [
           "remote-notification"
@@ -30,8 +30,7 @@
         "foregroundImage": "./src/assets/images/logo_square_1024.png",
         "backgroundColor": "#0A0C0F"
       },
-      "googleServicesFile": "./google-services.json",
-      "package": "com.metavault.app",
+      "package": "com.webixlebank.app",
       "permissions": [
         "NOTIFICATIONS",
         "RECEIVE_BOOT_COMPLETED",
@@ -75,7 +74,7 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "d8fec816-edb9-439e-bf18-b30fa6f2b66e"
+        "projectId": "d624d30f-add3-4d47-8b9d-280d849d66ba"
       }
     }
   }

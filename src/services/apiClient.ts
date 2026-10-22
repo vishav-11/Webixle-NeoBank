@@ -3,6 +3,7 @@ import axios, { type AxiosInstance, type AxiosError } from 'axios';
 import { Platform } from 'react-native';
 import { parseError }  from '@/utils/errorHandler';
 import { toast }       from '@/utils/toast';
+import { DEMO_MODE, mockAdapter } from '@/mocks/mockApi';
 
 export const TokenStorage = {
   async get(): Promise<string | null> {
@@ -30,6 +31,8 @@ export const TokenStorage = {
 
 const client: AxiosInstance = axios.create({
   timeout: 20000,
+  // DEMO MODE: serve everything from the in-memory mock backend (src/mocks/mockApi.ts)
+  ...(DEMO_MODE ? { adapter: mockAdapter } : {}),
   headers: { 'Content-Type': 'application/json' },
 });
 

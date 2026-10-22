@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import { DEMO_MODE, MOCK_COINS } from '@/mocks/mockApi';
 import {
   View, Text, StyleSheet, ScrollView, TouchableOpacity,
   TextInput, useWindowDimensions, Platform, RefreshControl,
@@ -100,8 +101,14 @@ export default function MarketsScreen() {
       }
     } catch (err) {
       console.error('Error fetching coins:', err);
-      setError('Failed to load market data. Please try again.');
-      setCoins([]);
+      if (DEMO_MODE) {
+        // demo fallback when CoinGecko is rate-limited / offline
+        setCoins(MOCK_COINS as any);
+        setError(null);
+      } else {
+        setError('Failed to load market data. Please try again.');
+        setCoins([]);
+      }
     } finally {
       setLoading(false);
       setRefreshing(false);

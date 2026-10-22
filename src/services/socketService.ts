@@ -6,6 +6,7 @@
 
 import { Platform } from 'react-native';
 import { TokenStorage } from './apiClient';
+import { DEMO_MODE } from '@/mocks/mockApi';
 
 const SOCKET_URL =process.env.EXPO_PUBLIC_API_URL || 'https://metaapi.yourmetavault.com';
 
@@ -51,6 +52,7 @@ class SocketService {
 
   // ── Connect ────────────────────────────────────────────────────────────────
   async connect(): Promise<void> {
+    if (DEMO_MODE) return; // no live socket in demo mode
     if (this.isConnecting || this.socket?.connected) return;
 
     this.shouldBeConnected = true;
